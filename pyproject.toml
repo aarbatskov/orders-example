@@ -1,0 +1,67 @@
+[project]
+name = "orders"
+version = "0.1.0"
+description = "Add your description here"
+dependencies = [
+    "sqlalchemy[asyncio]>=2.0.40",
+    "pydantic>=2.11.3",
+    "pydantic-settings>=2.9.1",
+    "fastapi>=0.115.12",
+    "uvicorn>=0.34.2",
+    "psycopg-binary>=3.2.6",
+    "psycopg>=3.2.6",
+    "alembic>=1.15.2",
+    "aiokafka>=0.12.0",
+    "punq>=0.7.0",
+    "ruff>=0.11.6",
+    "black>=25.1.0",
+    "mypy>=1.15.0",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/orders"]
+
+[tool.black]
+line-length = 120
+target-version = ["py312"]
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+exclude = [
+    ".venv",
+    "alembic",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]
+fixable = ["ALL"]
+
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "./src"
+ignore_missing_imports = true
+strict_optional = true
+disallow_untyped_defs = true
