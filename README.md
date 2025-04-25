@@ -1,11 +1,42 @@
 # orders-example
 
-quick start
-git clone https://github.com/aarbatskov/orders-example.git
-cd orders-example
+## Quick Start
 
-Запуск служебных сервисов: БД, Zookeeper, Kafka
-docker compose --profile infra up --build -d
+1. Клонируйте репозиторий:
 
-Запуск сервиса:
-docker compose --profile api up
+    ```bash
+    git clone https://github.com/aarbatskov/orders-example.git
+    cd orders-example
+    ```
+
+2. Запуск служебных сервисов: БД, Zookeeper, Kafka:
+
+    ```bash
+    docker compose --profile infra up --build -d
+    ```
+
+3. Запуск основного сервиса:
+
+    ```bash
+    docker compose --profile api up
+    ```
+
+## Описание
+
+Этот проект представляет собой пример реализации архитектуры **Event-Driven** с использованием **Pub/Sub** для обработки заказов. Он включает в себя сервисы для обработки заказов, отправки уведомлений, а также использует Kafka и Zookeeper для обмена сообщениями.
+
+## Структура проекта
+
+- **`api`** - API для взаимодействия с внешними системами (например, создание заказов).
+- **`services`** - Модели и бизнес-логика для работы с заказами, отправка email-уведомлений.
+- **`events`** - Модели и механизмы для отправки событий в Kafka.
+- **`infra`** - Конфигурации для контейнеров, таких как Kafka, Zookeeper, PostgreSQL и другие зависимые сервисы.
+
+## Контейнеры
+
+Проект использует Docker Compose для упрощения разработки и тестирования. Он включает в себя несколько сервисов:
+
+- **Zookeeper** - Сервис для координации кластеров.
+- **Kafka** - Система обмена сообщениями для реализации Pub/Sub паттерна.
+- **PostgreSQL** - База данных для хранения информации о заказах.
+- **API сервис** - Основной сервис, который взаимодействует с внешними системами через API и Kafka.
