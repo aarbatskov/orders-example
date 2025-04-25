@@ -14,8 +14,8 @@
     ```bash
     docker compose --profile infra up --build -d
     ```
-
-3. Запуск основного сервиса:
+3. Создайте и заполните .env файл в соответствии с .env_example
+4. Запуск основного сервиса:
 
     ```bash
     docker compose --profile api up
